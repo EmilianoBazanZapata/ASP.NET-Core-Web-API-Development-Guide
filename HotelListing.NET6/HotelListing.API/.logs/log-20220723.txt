@@ -1,0 +1,55 @@
+2022-07-23 14:58:51.730 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 14:58:51.753 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 14:58:51.756 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 14:58:51.756 -03:00 [INF] Hosting environment: Development
+2022-07-23 14:58:51.757 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 14:59:23.463 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 14:59:23.498 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 14:59:23.503 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 14:59:23.504 -03:00 [INF] Hosting environment: Development
+2022-07-23 14:59:23.504 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:00:51.754 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:00:51.776 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:00:51.778 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:00:51.779 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:00:51.779 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:02:19.042 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:02:19.065 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:02:19.067 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:02:19.068 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:02:19.068 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:02:36.485 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:02:36.519 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:02:36.525 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:02:36.525 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:02:36.526 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:02:51.992 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:02:52.013 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:02:52.015 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:02:52.016 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:02:52.016 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:03:56.555 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:03:56.592 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:03:56.597 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:03:56.597 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:03:56.598 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:04:06.304 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:04:06.325 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:04:06.327 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:04:06.328 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:04:06.328 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:11:38.923 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:11:38.966 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:11:38.974 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:11:38.976 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:11:38.978 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:11:52.353 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:11:52.375 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:11:52.377 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:11:52.378 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:11:52.378 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
+2022-07-23 15:13:05.150 -03:00 [INF] Now listening on: https://localhost:7141
+2022-07-23 15:13:05.172 -03:00 [INF] Now listening on: http://localhost:5141
+2022-07-23 15:13:05.174 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-07-23 15:13:05.174 -03:00 [INF] Hosting environment: Development
+2022-07-23 15:13:05.174 -03:00 [INF] Content root path: C:\Users\Emiliano\Desktop\Curso .NET\.NetCore\ASP.NET-Core-Web-API-Development-Guide\HotelListing.NET6\HotelListing.API\
