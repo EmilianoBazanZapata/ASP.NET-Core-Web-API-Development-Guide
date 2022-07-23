@@ -11,6 +11,6 @@ namespace HotelListing.API.Models
 
         [ForeignKey(nameof(CountryId))]
         public int CountryId { get; set; }
-        public Country Country { get; set; }
+        public Country? Country { get; set; }
     }
 }

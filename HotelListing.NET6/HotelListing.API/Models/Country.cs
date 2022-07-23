@@ -7,6 +7,6 @@
         public string ShortName { get; set; } = string.Empty;
 
 
-        public virtual IList<Hotel> Hotels { get; set; }
+        public virtual IList<Hotel>? Hotels { get; set; }
     }
 }

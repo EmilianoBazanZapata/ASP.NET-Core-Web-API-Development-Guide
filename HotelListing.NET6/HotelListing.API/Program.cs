@@ -23,11 +23,7 @@ builder.Services.AddCors(options => {
             .AllowAnyMethod());
 });
 
-//builder.Host.UseSerilog((ctx, services, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
-
-builder.Host.UseSerilog((hostContext, configuration) => {
-    configuration.WriteTo.Console().ReadFrom.Configuration(hostContext.Configuration);
-});
+builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 
 var app = builder.Build();
 
