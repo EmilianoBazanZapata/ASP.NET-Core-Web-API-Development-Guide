@@ -1,11 +1,10 @@
-﻿using HotelListing.API.Models.HotelDTOS;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HotelListing.API.Models.CountryDTOS
 {
-    public class GetCountryDTO
+    public abstract class BaseCountryDTO
     {
-        public int Id { get; set; }
+        [Required]
         public string Name { get; set; } = string.Empty;
         public string ShortName { get; set; } = string.Empty;
     }
