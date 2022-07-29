@@ -30,5 +30,20 @@ namespace HotelListing.API.Repository
 
             return result.Errors;
         }
+        public async Task<bool> Login(LoginDTO loginDTO)
+        {
+            bool isValidUser = false;
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+                isValidUser = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return isValidUser;
+        }
     }
 }
