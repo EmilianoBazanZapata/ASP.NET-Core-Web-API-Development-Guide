@@ -1,5 +1,6 @@
 ﻿using HotelListing.API.Contracts;
 using HotelListing.API.Models.UserDTOS;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelListing.API.Controllers
@@ -46,14 +47,14 @@ namespace HotelListing.API.Controllers
 
         public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            var isValidUser = await _authManager.Login(loginDTO);
+            var authResponse = await _authManager.Login(loginDTO);
 
-            if (!isValidUser) 
+            if (authResponse == null) 
             {
                 return Unauthorized();
             }
 
-            return Ok();
+            return Ok(authResponse);
         }
     }
 }
