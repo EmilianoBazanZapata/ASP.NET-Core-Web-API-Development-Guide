@@ -5,6 +5,7 @@ using HotelListing.API.Models;
 using HotelListing.API.Contracts;
 using AutoMapper;
 using HotelListing.API.Models.HotelDTOS;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace HotelListing.API.Controllers
 {
@@ -23,6 +24,7 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Hotels
         [HttpGet]
+        [EnableQuery]
         public async Task<ActionResult<IEnumerable<HotelDTO>>> GetHotels()
         {
             var hotels = await _hotelsRepository.GetAllAsync();
