@@ -6,6 +6,7 @@ using HotelListing.API.Models.CountryDTOS;
 using AutoMapper;
 using HotelListing.API.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using HotelListing.API.Exceptions;
 
 namespace HotelListing.API.Controllers
 {
@@ -37,15 +38,16 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<CountryDTO>> GetCountry(int id)
         {
             var country = await _countriesRepository.GetDetails(id);
 
             if (country == null)
             {
-                _logger.LogWarning($"Record not found in {nameof(GetCountry)} with Id: {id}.");
-                return NotFound();
+                throw new NotFoundException(nameof(GetCountry), id);
+               // _logger.LogWarning($"Record not found in {nameof(GetCountry)} with Id: {id}.");
+               // return NotFound();
             }
             var countryDTO = _mapper.Map<CountryDTO>(country);
             return Ok(countryDTO);

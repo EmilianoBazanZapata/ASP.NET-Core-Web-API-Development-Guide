@@ -11,10 +11,10 @@ namespace HotelListing.API.Controllers
     {
         private readonly IAuthManager _authManager;
         private readonly ILogger<AccountController> _logger;
-        public AccountController(IAuthManager authManager,ILogger<AccountController> logger)
+        public AccountController(IAuthManager authManager, ILogger<AccountController> logger)
         {
             _authManager = authManager;
-            _logger = logger;   
+            _logger = logger;
         }
 
         //api/Acount/Register
@@ -24,30 +24,23 @@ namespace HotelListing.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
-        public async Task<ActionResult> Register([FromBody] ApiUserDTO apiUserDTO) 
+        public async Task<ActionResult> Register([FromBody] ApiUserDTO apiUserDTO)
         {
             _logger.LogInformation($"Registration Attemp for {apiUserDTO.Email}");
 
-            try
-            {
-                var errors = await _authManager.Register(apiUserDTO);
+            var errors = await _authManager.Register(apiUserDTO);
 
-                if (errors.Any())
+            if (errors.Any())
+            {
+                foreach (var error in errors)
                 {
-                    foreach (var error in errors)
-                    {
-                        ModelState.AddModelError(error.Code, error.Description);
-                    }
-                    return BadRequest(ModelState);
+                    ModelState.AddModelError(error.Code, error.Description);
                 }
+                return BadRequest(ModelState);
+            }
 
-                return Ok(apiUserDTO);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation(ex,$"Something Went Wrong in the {nameof(Register)} - User Registration attemtp for {apiUserDTO.Email}");
-                return Problem($"Something Went Wrong int the {nameof(Register)}. Please contact support", statusCode: 500);
-            }
+            return Ok(apiUserDTO);
+
         }
 
         //api/Acount/Login
@@ -59,9 +52,11 @@ namespace HotelListing.API.Controllers
 
         public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
         {
+            _logger.LogInformation($"Login Attemt for {loginDTO.Email}");
+
             var authResponse = await _authManager.Login(loginDTO);
 
-            if (authResponse == null) 
+            if (authResponse == null)
             {
                 return Unauthorized();
             }
@@ -71,7 +66,7 @@ namespace HotelListing.API.Controllers
 
         //api/Acount/Login
         [HttpPost]
-        [Route("login")]
+        [Route("refreshToken")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
