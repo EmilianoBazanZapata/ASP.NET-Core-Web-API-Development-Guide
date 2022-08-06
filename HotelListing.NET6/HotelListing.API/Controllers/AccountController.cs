@@ -10,9 +10,11 @@ namespace HotelListing.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAuthManager _authManager;
-        public AccountController(IAuthManager authManager)
+        private readonly ILogger<AccountController> _logger;
+        public AccountController(IAuthManager authManager,ILogger<AccountController> logger)
         {
             _authManager = authManager;
+            _logger = logger;   
         }
 
         //api/Acount/Register
@@ -24,18 +26,28 @@ namespace HotelListing.API.Controllers
 
         public async Task<ActionResult> Register([FromBody] ApiUserDTO apiUserDTO) 
         {
-            var errors = await _authManager.Register(apiUserDTO);
+            _logger.LogInformation($"Registration Attemp for {apiUserDTO.Email}");
 
-            if (errors.Any()) 
+            try
             {
-                foreach (var error in errors)
-                {
-                    ModelState.AddModelError(error.Code,error.Description);
-                }
-                return BadRequest(ModelState);
-            }
+                var errors = await _authManager.Register(apiUserDTO);
 
-            return Ok(apiUserDTO);
+                if (errors.Any())
+                {
+                    foreach (var error in errors)
+                    {
+                        ModelState.AddModelError(error.Code, error.Description);
+                    }
+                    return BadRequest(ModelState);
+                }
+
+                return Ok(apiUserDTO);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation(ex,$"Something Went Wrong in the {nameof(Register)} - User Registration attemtp for {apiUserDTO.Email}");
+                return Problem($"Something Went Wrong int the {nameof(Register)}. Please contact support", statusCode: 500);
+            }
         }
 
         //api/Acount/Login
