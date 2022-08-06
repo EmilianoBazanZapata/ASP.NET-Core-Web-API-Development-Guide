@@ -29,11 +29,10 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetCountryDTO>>> GetCountries()
+        public async Task<ActionResult<PagedResult<GetCountryDTO>>> GetPagedCountries([FromQuery] QueryParameters queryParameters)
         {
-            var countries = await _countriesRepository.GetAllAsync();
-            var records = _mapper.Map<List<GetCountryDTO>>(countries);
-            return Ok(records);
+            var countries = await _countriesRepository.GetAllAsync<GetCountryDTO>(queryParameters);
+            return Ok(countries);
         }
 
         // GET: api/Countries/5
