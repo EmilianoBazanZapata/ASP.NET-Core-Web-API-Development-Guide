@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using HotelListing.API.Data;
 using HotelListing.API.Models;
 using HotelListing.API.Models.CountryDTOS;
 using AutoMapper;
 using HotelListing.API.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using HotelListing.API.Exceptions;
-using Microsoft.AspNetCore.OData.Query;
 
 namespace HotelListing.API.Controllers
 {
@@ -46,8 +44,6 @@ namespace HotelListing.API.Controllers
             if (country == null)
             {
                 throw new NotFoundException(nameof(GetCountry), id);
-               // _logger.LogWarning($"Record not found in {nameof(GetCountry)} with Id: {id}.");
-               // return NotFound();
             }
             var countryDTO = _mapper.Map<CountryDTO>(country);
             return Ok(countryDTO);
@@ -95,7 +91,7 @@ namespace HotelListing.API.Controllers
         // POST: api/Countries
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<Country>> PostCountry(CreateCountryDTO createCountry)
         {
 
