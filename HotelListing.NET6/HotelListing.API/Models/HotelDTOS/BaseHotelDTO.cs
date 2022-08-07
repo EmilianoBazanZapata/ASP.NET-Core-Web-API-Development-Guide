@@ -13,10 +13,10 @@ namespace HotelListing.API.Models.HotelDTOS
         [MaxLength(50, ErrorMessage = "The address is to Long")]
         [MinLength(2, ErrorMessage = "The address is to Short")]
         public string Address { get; set; } = string.Empty;
-        public double Rating { get; set; }
 
         [Required]
         [Range(1, 5, ErrorMessage = "The range is Invalid")]
+        public double Rating { get; set; }
         public int CountryId { get; set; }
     }
 }
