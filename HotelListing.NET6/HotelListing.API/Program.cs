@@ -33,7 +33,6 @@ builder.Services.AddIdentityCore<ApiUser>()
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAll",
@@ -92,9 +91,12 @@ builder.Services.AddSwaggerGen(c => {
                 Reference = new OpenApiReference {
                     Type = ReferenceType.SecurityScheme,
                         Id = "Bearer"
-                }
+                },
+                Scheme = "0auth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
             },
-            new string[] {}
+            new List<string>()
         }
     });
 });

@@ -23,6 +23,7 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Countries
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<PagedResult<GetCountryDTO>>> GetPagedCountries([FromQuery] QueryParameters queryParameters)
         {
             var countries = await _countryService.GetAllCountriesPaginated(queryParameters);
@@ -31,7 +32,7 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult<CountryDTO>> GetCountry(int id)
         {
             var country = await _countryService.GetCountryById(id);
@@ -41,6 +42,7 @@ namespace HotelListing.API.Controllers
         // PUT: api/Countries/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> PutCountry(int id, UpdateCountryDTO updateCountryDTO)
         {
             await _countryService.UpdateCountry(id, updateCountryDTO);
@@ -50,7 +52,7 @@ namespace HotelListing.API.Controllers
         // POST: api/Countries
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        //[Authorize]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<Country>> PostCountry(CreateCountryDTO createCountry)
         {
             var country = await _countryService.AddCountry(createCountry);
@@ -59,6 +61,7 @@ namespace HotelListing.API.Controllers
 
         // DELETE: api/Countries/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteCountry(int id)
         {
             await _countryService.DeleteCountry(id);    

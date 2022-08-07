@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelListing.API.Models;
 using HotelListing.API.Models.HotelDTOS;
 using HotelListing.API.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelListing.API.Controllers
 {
@@ -18,6 +19,7 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Hotels
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<PagedResult<GetHotelDTO>>> GetPagedHotels([FromQuery] QueryParameters queryParameters)
         {
             var hotels = await _hotelService.GetAllHotelsPaginated(queryParameters);
@@ -26,6 +28,7 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<HotelDTO>> GetHotel(int id)
         {
             var hotel = await _hotelService.GetHotelById(id);   
@@ -35,6 +38,7 @@ namespace HotelListing.API.Controllers
         // PUT: api/Hotels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ResponseHotelDTO> PutHotel(int id, UpdateHotelDTO updateHotelDTO)
         {
             var result = await _hotelService.UpdateHotel(id, updateHotelDTO);
@@ -44,6 +48,7 @@ namespace HotelListing.API.Controllers
         // POST: api/Hotels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<ResponseHotelDTO> PostHotel(CreateHotelDTO createHotelDTO)
         {
             var result = await _hotelService.AddHotel(createHotelDTO);
@@ -52,6 +57,7 @@ namespace HotelListing.API.Controllers
 
         // DELETE: api/Hotels/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ResponseHotelDTO> DeleteHotel(int id)
         {
             var result = await _hotelService.DeleteHotel(id);

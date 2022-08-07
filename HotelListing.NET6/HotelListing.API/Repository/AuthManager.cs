@@ -38,7 +38,7 @@ namespace HotelListing.API.Repository
 
             return newRefreshToken;
         }
-        public async Task<IEnumerable<IdentityError>> Register(ApiUserDTO userDTO)
+        public async Task<IEnumerable<IdentityError>> RegisterUser(ApiUserDTO userDTO)
         {
             var user = _mapper.Map<ApiUser>(userDTO);
             user.UserName = userDTO.Email;
@@ -52,10 +52,24 @@ namespace HotelListing.API.Repository
 
             return result.Errors;
         }
+        public async Task<IEnumerable<IdentityError>> RegisterAdministrator(ApiUserDTO userDTO)
+        {
+            var user = _mapper.Map<ApiUser>(userDTO);
+            user.UserName = userDTO.Email;
+
+            var result = await _userManager.CreateAsync(user, userDTO.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Administrator");
+            }
+
+            return result.Errors;
+        }
         public async Task<AuthResponseDTO> Login(LoginDTO loginDTO)
         {
             _logger.LogInformation($"Looking for user email with email {loginDTO.Email}");
-            var _user = await _userManager.FindByEmailAsync(loginDTO.Email);
+            _user = await _userManager.FindByEmailAsync(loginDTO.Email);
             var isValidUser = await _userManager.CheckPasswordAsync(_user, loginDTO.Password);
 
             if (isValidUser == false || _user == null)
@@ -102,9 +116,9 @@ namespace HotelListing.API.Repository
         }
         private async Task<string> GenerateToken()
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:key"]));
+            var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
 
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
 
             var roles = await _userManager.GetRolesAsync(_user);
             var roleClaims = roles.Select(x => new Claim(ClaimTypes.Role, x)).ToList();
@@ -112,10 +126,12 @@ namespace HotelListing.API.Repository
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub,_user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, _user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("uid",_user.Id)
-            }.Union(userClaims).Union(roleClaims);
+                new Claim(JwtRegisteredClaimNames.Email, _user.Email),
+                new Claim("uid", _user.Id),
+            }
+            .Union(userClaims).Union(roleClaims);
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JwtSettings:Issuer"],
@@ -123,10 +139,9 @@ namespace HotelListing.API.Repository
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JwtSettings:DurationInMinutes"])),
                 signingCredentials: credentials
-            );
+                );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
     }
 }
