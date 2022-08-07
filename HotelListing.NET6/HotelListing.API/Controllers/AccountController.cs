@@ -19,7 +19,7 @@ namespace HotelListing.API.Controllers
 
         //api/Acount/Register
         [HttpPost]
-        [Route("register")]
+        [Route("registerUser")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -28,7 +28,31 @@ namespace HotelListing.API.Controllers
         {
             _logger.LogInformation($"Registration Attemp for {apiUserDTO.Email}");
 
-            var errors = await _authManager.Register(apiUserDTO);
+            var errors = await _authManager.RegisterUser(apiUserDTO);
+
+            if (errors.Any())
+            {
+                foreach (var error in errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+                return BadRequest(ModelState);
+            }
+
+            return Ok(apiUserDTO);
+
+        }
+        [HttpPost]
+        [Route("registerAdministrator")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+
+        public async Task<ActionResult> RegisterAdministrator([FromBody] ApiUserDTO apiUserDTO)
+        {
+            _logger.LogInformation($"Registration Attemp for {apiUserDTO.Email}");
+
+            var errors = await _authManager.RegisterAdministrator(apiUserDTO);
 
             if (errors.Any())
             {
