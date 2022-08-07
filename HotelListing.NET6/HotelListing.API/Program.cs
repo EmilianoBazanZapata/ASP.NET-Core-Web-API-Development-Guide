@@ -11,9 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.OData;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,22 +38,6 @@ builder.Services.AddCors(options => {
             .AllowAnyMethod());
 });
 
-builder.Services.AddApiVersioning(options => 
-{
-    options.AssumeDefaultVersionWhenUnspecified = true;
-    options.DefaultApiVersion = new ApiVersion(1, 0);
-    options.ReportApiVersions = true;
-    options.ApiVersionReader = ApiVersionReader.Combine(
-                               new QueryStringApiVersionReader("api-version"),
-                               new HeaderApiVersionReader("X-Version"),
-                               new MediaTypeApiVersionReader("Ver"));
-});
-
-builder.Services.AddVersionedApiExplorer(options => 
-{
-    options.GroupNameFormat = "'v'VVV";
-    options.SubstituteApiVersionInUrl = true;
-});
 
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 

@@ -1,7 +1,4 @@
-﻿using HotelListing.API.Models.HotelDTOS;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace HotelListing.API.Models.CountryDTOS
+﻿namespace HotelListing.API.Models.CountryDTOS
 {
     public class GetCountryDTO
     {
