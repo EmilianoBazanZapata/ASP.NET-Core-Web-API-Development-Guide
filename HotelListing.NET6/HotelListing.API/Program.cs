@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
 using Microsoft.AspNetCore.OData;
+using HotelListing.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ var connectionString = builder.Configuration.GetConnectionString("DbConnection")
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddScoped<CountryService, CountryService>();
+builder.Services.AddScoped<HotelService, HotelService>();
 
 builder.Services.AddIdentityCore<ApiUser>()
                 .AddRoles<IdentityRole>()
