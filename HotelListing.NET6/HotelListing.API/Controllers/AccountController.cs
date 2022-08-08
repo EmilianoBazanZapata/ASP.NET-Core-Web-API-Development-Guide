@@ -91,6 +91,7 @@ namespace HotelListing.API.Controllers
         //api/Acount/Login
         [HttpPost]
         [Route("refreshToken")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
